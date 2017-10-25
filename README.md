@@ -7,7 +7,7 @@ A: By adding naked twins constraints before elimination and only choice steps, c
 
 # Question 2 (Diagonal Sudoku)
 Q: How do we use constraint propagation to solve the diagonal Sudoku problem?  
-A: Adding additional units and using the same constraints creates solutions for Sudoku extension, like diagonal Sudoku.
+A: Adding additional units as constraints creates solutions for Sudoku extension, like diagonal Sudoku.
 
 ### Install
 
