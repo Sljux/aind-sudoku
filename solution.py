@@ -6,17 +6,20 @@ rows = 'ABCDEFGHI'
 cols = '123456789'
 
 
-def cross(a, b):
-    return [x + y for x in a for y in b]
+def cross(first, second):
+    return [x + y for x in first for y in second]
 
 
 boxes = cross(rows, cols)
 row_units = [cross(r, cols) for r in rows]
 column_units = [cross(rows, c) for c in cols]
 square_units = [cross(rs, cs) for rs in ('ABC', 'DEF', 'GHI') for cs in ('123', '456', '789')]
+
+# Diagonal units
 main_diag = [a + b for a, b in zip(rows, cols)]
 anti_diag = [a + b for a, b in zip(rows, cols[::-1])]
 diag_units = [main_diag, anti_diag]
+
 unit_list = row_units + column_units + square_units + diag_units
 units = dict((s, [u for u in unit_list if s in u]) for s in boxes)
 peers = dict((s, set(sum(units[s], [])) - {s}) for s in boxes)
@@ -47,12 +50,14 @@ def naked_twins(values):
         the values dictionary with the naked twins eliminated from peers.
     """
     for unit in unit_list:
+        # Find values of length 2 in a unit which appear more than once
         duplicates = [val for val, count in
-                      Counter([values[b] for b in unit if len(values[b]) == 2]).items()
+                      Counter([values[box] for box in unit if len(values[box]) == 2]).items()
                       if count > 1]
 
         for dup in duplicates:
             for box in unit:
+                # Don't touch the duplicate itself
                 if values[box] == dup:
                     continue
 
@@ -73,7 +78,7 @@ def grid_values(grid):
             Values: The value in each box, e.g., '8'. If the box has no value, then the value will be '123456789'.
     """
     assert len(grid) == 81
-    return dict(zip(boxes, [c if c != '.' else '123456789' for c in grid]))
+    return dict(zip(boxes, [char if char != '.' else '123456789' for char in grid]))
 
 
 def display(values):
@@ -146,7 +151,7 @@ def search(values):
     if values is False:
         return False
 
-    if all(len(values[b]) == 1 for b in boxes):
+    if all(len(values[box]) == 1 for box in boxes):
         return values
 
     n, s = min((len(values[s]), s) for s in boxes if len(values[s]) > 1)
