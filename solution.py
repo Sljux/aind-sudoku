@@ -102,7 +102,6 @@ def eliminate(values):
 
         for peer in peers[box]:
             assign_value(values, peer, values[peer].replace(digit, ''))
-            # values[peer] = values[peer].replace(digit, '')
 
     return values
 
@@ -117,7 +116,6 @@ def only_choice(values):
 
             if len(digit_boxes) == 1:
                 assign_value(values, digit_boxes[0], digit)
-                # values[digit_boxes[0]] = digit
 
     return values
 
@@ -128,9 +126,9 @@ def reduce_puzzle(values):
     while not stalled:
         solved_values_before = len([box for box in values.keys() if len(values[box]) == 1])
 
+        values = naked_twins(values)
         values = eliminate(values)
         values = only_choice(values)
-        values = naked_twins(values)
 
         solved_values_after = len([box for box in values.keys() if len(values[box]) == 1])
 
