@@ -51,10 +51,10 @@ class SudokuSquare:
             number = ""
             self.color = (255, 255, 255)
         # print("FONTS", pygame.font.get_fonts())
-        self.font = pygame.font.SysFont('opensans', 21)
+        self.font = pygame.font.SysFont('opensans', 25)
         self.text = self.font.render(number, 1, (255, 255, 255))
         self.textpos = self.text.get_rect()
-        self.textpos = self.textpos.move(offsetX + 17, offsetY + 4)
+        self.textpos = self.textpos.move(offsetX + 18, offsetY + 12)
 
         # self.collide = pygame.Surface((25, 22))
         # self.collide = self.collide.convert()
