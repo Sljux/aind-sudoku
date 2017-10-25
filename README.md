@@ -3,11 +3,11 @@
 
 # Question 1 (Naked Twins)
 Q: How do we use constraint propagation to solve the naked twins problem?  
-A: *Student should provide answer here*
+A: By adding naked twins constraints before elimination and only choice steps, choices are eliminated faster from units.
 
 # Question 2 (Diagonal Sudoku)
-Q: How do we use constraint propagation to solve the diagonal sudoku problem?  
-A: *Student should provide answer here*
+Q: How do we use constraint propagation to solve the diagonal Sudoku problem?  
+A: Adding additional units and using the same constraints creates solutions for Sudoku extension, like diagonal Sudoku.
 
 ### Install
 
